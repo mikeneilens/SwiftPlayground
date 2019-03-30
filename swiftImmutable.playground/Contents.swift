@@ -20,7 +20,7 @@ print(mutableBrownDogFilter(dogs: dogs))
 
 func brownDogFilter(dogs:Array<Dog>) -> Array<Dog> {
     
-    if let firstDog = dogs.first { //if the array is empty, first return nil
+    if let firstDog = dogs.first { //if the array is empty, first returns nil
         let remainingDogs = Array(dogs.dropFirst()) //have to case an arraySlice to an array
         if firstDog.colour == "Brown" {
             return [firstDog] + brownDogFilter(dogs: remainingDogs)
