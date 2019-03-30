@@ -37,7 +37,7 @@ print(brownDogFilter(dogs: dogs))
 //This uses less memory. In the previous version the function keeps getting added to the stack, but on this version the compiler discards each function at each return
 func brownDogFilterTailRecursion(dogs:Array<Dog>, result:Array<Dog>=[]) -> Array<Dog> {
     
-    if let firstDog = dogs.first { //if the array is empty, first return nil
+    if let firstDog = dogs.first { //first is often called the head of the list
         let remainingDogs = Array(dogs.dropFirst()) //This is often called the "tail" of the list
         if firstDog.colour == "Brown" {
             return brownDogFilterTailRecursion(dogs: remainingDogs, result: result + [firstDog]) //append the data to the result which is then passed as a paramter
@@ -61,7 +61,7 @@ print(filteredDogs)
 let numberOfBrownDogs = dogs.reduce(0){ (total, dog) -> Int in if dog.colour == "Brown" {return total + 1} else {return total + 0 }  } //adds 1 to the total each time it is a brown dog
 print("No of brown dogs is \(numberOfBrownDogs)")
 
-//Swift tuples make it easy to keep accumulate more than one thing
+//Swift tuples make it easy to accumulate more than one thing
 let numberOfBrownAndOtherDogs = dogs.reduce((brown:0,other:0)){ (total, dog) -> (brown:Int, other:Int) in if dog.colour == "Brown" {return (total.brown + 1, total.other)} else {return (total.brown, total.other + 1) }  }
 print("No of brown dogs is \(numberOfBrownAndOtherDogs.brown), no of other dogs \(numberOfBrownAndOtherDogs.other) ")
 
